@@ -75,7 +75,7 @@ class Auth0Service {
      */
     public function decodeJWT($encToken) {
         // Decode the user
-        $token = \JWT::decode($encToken, base64_decode(strtr($this->client_secret, '-_', '+/')) );
+        $token = \JWT::decode($encToken, base64_decode(strtr($this->client_secret, '-_', '+/')), array('HS256') );
 
         // validate that this JWT was made for us
         if ($token->aud != $this->client_id) {
